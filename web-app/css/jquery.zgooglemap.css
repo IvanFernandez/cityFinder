@@ -1,0 +1,17 @@
+﻿@charset "UTF-8";
+/*
+ * Example of zGoogleMap Styling
+ *
+ * Version: 1.0.1
+ * (c) Copyright 2011, Zazar Ltd
+ *
+ */
+
+body {
+	margin: 1em 3em;
+	font-family: Tahoma, Genevam, sans-serif;
+}
+
+.mapGoogle {
+	border: 4px solid #ccc;
+}

@@ -1,0 +1,56 @@
+﻿@charset "UTF-8";
+/*
+ * Example of zFlickrFeed Styling
+ *
+ * Version: 1.0.1
+ * (c) Copyright 2011, Zazar Ltd
+ *
+ */
+
+body {
+	margin: 1em 3em;
+	font-family: Tahoma, Genevam, sans-serif;
+}
+
+.flickrFeed
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	width: 400px;
+	text-align: center;
+}
+.flickrFeed a
+{
+	color: #666;
+	text-decoration: none;
+}
+.flickrFeed a:hover
+{
+	color: #000;
+	text-decoration: underline;
+}
+
+.flickrHeader
+{
+	padding: 0.2em 0;
+	font-size: 1.1em;
+}
+
+.flickrBody { border: 1px solid #999; }
+.flickrBody ul { list-style: none; }
+.flickrBody ul, .rssRow, .rssRow h4, .rssRow p
+{
+	margin: 0;
+	padding: 0;
+}
+
+.flickrRow { padding: 0.8em; }
+
+.photoTitle
+{
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.odd { background-color: #e8e8fc; }
+.even { background-color: #d4d4e8; }

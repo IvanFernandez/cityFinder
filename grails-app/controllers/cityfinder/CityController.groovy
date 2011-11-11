@@ -8,9 +8,34 @@ class CityController {
 
 	def info() {
 		def cityInstance = City.get(params.id)
-		render(view: "info", model: [cityInstance: cityInstance])
-		return
+        def cityEncoded = URLEncoder.encode(cityInstance.name)
+		def appid = "foOF4CzV34EFIIW4gz1lx0Ze1em._w1An3QyivRalpXCK9sIXT5de810JWold3ApkdMdCrc-%22"
+		def url = "http://where.yahooapis.com/v1/places.q('" + cityEncoded + "')?appid=" + appid;
+		println "URLL " + url
+  		def xml = url.toURL().text
+  		println xml
+  		def rss = new XmlSlurper().parseText(xml)
+  		def woeid = rss.place.woeid
+
+		def yahooWeather = "http://weather.yahooapis.com/forecastrss?w=" + woeid + "&u=c"
+		println yahooWeather
+		def yahooWeatherXML = yahooWeather.toURL().text
+		def yrss = new XmlSlurper().parseText(yahooWeatherXML)
+		def urlcode = yrss.channel.link.text()
+		def list = urlcode.tokenize("//")
+		if (list.size() > 0) {
+			def dirtyCode = list.last()
+			def code = dirtyCode.tokenize("_").first()
+	    	println code
+	    	flash.code = code
+			render(view: "info", model: [cityInstance: cityInstance])
+			return
+		}
+		else {
+			redirect(action: "list")
+		}
 	}
+	
 	def index() {
 		redirect(action: "list", params: params)
 	}
@@ -40,6 +65,7 @@ class CityController {
 
 	def show() {
 		def cityInstance = City.get(params.id)
+		println cityInstance
 		if (!cityInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
 				message(code: 'city.label', default: 'City'),
